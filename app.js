@@ -68,6 +68,7 @@ function gumtreeSearch(searchItem, filterType, callback) {
     			result;
     			if(result != undefined){
     				res.render('results', {result:result})
+					console.log(result);
     			}
     		});
     		
@@ -79,11 +80,17 @@ function gumtreeSearch(searchItem, filterType, callback) {
     	}
     })
 })
+<<<<<<< HEAD
+	app.listen(port, hostname, function(){
+		console.log("Server has started")
+	})
+=======
 
 	app.listen(port, hostname, function(){
 		console.log("Server has started")
 	})
 
+>>>>>>> ced70db8da6ec13d248764ea6c9490afa4e0423d
 
 app.get('/graph', function(req, res){
 	res.render('graph')
