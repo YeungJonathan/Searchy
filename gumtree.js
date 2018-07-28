@@ -32,7 +32,7 @@ function gumtreeSearch(searchItem, filterType, callback) {
 		});
 }
 
-gumtreeSearch('ps4', 1, function(result) {
+gumtreeSearch('fifa 18', 1, function(result) {
 	memes = result;
 	console.log(memes);
 });
