@@ -79,6 +79,16 @@ function gumtreeSearch(searchItem, filterType, callback) {
     	}
     })
 })
+<<<<<<< HEAD
 	app.listen(port, hostname, function(){
 		console.log("Server has started")
 	})
+=======
+
+app.get('/graph', function(req, res){
+	res.render('graph')
+})
+app.listen(port, hostname, function(){
+	console.log("Server has started")
+})
+>>>>>>> b954bc2228e48c9d75f5bab867c994fae8130cc4

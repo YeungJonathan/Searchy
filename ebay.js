@@ -34,6 +34,7 @@ app.get("/", function(req, res){
 				name+=a[itemNo][index];
 				index+=1;
 			}
+			name = name.slice(0,name.length-1);
 			
 			var galleryURL = "";
 			var galleryFound = false;
@@ -76,6 +77,7 @@ app.get("/", function(req, res){
 				galleryURL+=a[itemNo][index];
 				index+=1;
 			}
+			galleryURL = galleryURL.slice(0,galleryURL.length-1);
 			
 			var viewItemURL = '';
 			var viewItemURLFound = false;
@@ -121,7 +123,51 @@ app.get("/", function(req, res){
 				viewItemURL+=a[itemNo][index];
 				index+=1;
 			}
-			items.push([name, galleryURL,viewItemURL]);
+			
+			viewItemURL= viewItemURL.slice(0,viewItemURL.length-1)
+			
+			var price = 0;
+			var priceFound = false;
+			while (priceFound != true){
+				if (a[itemNo][index] == 'c'){
+					index+=1;
+					if (a[itemNo][index] == 'o'){
+						index+=1;
+						if (a[itemNo][index] == 'n'){
+							index+=1;
+							if (a[itemNo][index] == 'v'){
+								index+=1;
+								if (a[itemNo][index] == 'e'){
+									index+=1;
+									if (a[itemNo][index] == 'r'){
+										index+=1;
+										if (a[itemNo][index] == 't'){
+											index+=1;
+											if (a[itemNo][index] == 'e'){
+												index+=1;
+												if (a[itemNo][index] == 'd'){
+														index+=49;
+														priceFound=true;														
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+				index+=1;
+			};
+
+			while (a[itemNo][index]!="]"){
+				price+=a[itemNo][index];
+				index+=1;
+			};
+			price = price.slice(0,price.length-2);
+//			console.log(price);
+			
+			items.push([name, galleryURL,viewItemURL,price]);
 			}
 			console.log(items);
 		}	
