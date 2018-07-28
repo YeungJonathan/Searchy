@@ -4,6 +4,7 @@ var request = require('request');
 var http = require('http');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
+var items = [];
 
 var hostname = '127.0.0.1';
 var port = 8080;
@@ -66,8 +67,18 @@ function gumtreeSearch(searchItem, filterType, callback) {
     			// var data = JSON.parse(body)
     			gumtreeSearch(searchitem, 1, function(result) {
     				if(result != undefined ) {
-    					console.log(result);
-    					res.render('results', {result:result});
+//    					console.log(result);
+						for (let i = 0; i<5 ; i++){
+							let tmp = []
+							a = result[i]
+							b = a[0].split('\n')
+							tmp.push(b[0]);
+							tmp.push(b[1].slice(6,b[1].length));
+							tmp.push('https://www.gumtree.com.au'+a[1]);
+							items.push(tmp);
+						}
+    					res.render('results', {items:items});
+
     				}
     			});
     			
