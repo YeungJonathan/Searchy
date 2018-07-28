@@ -6,7 +6,7 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 
 var hostname = '127.0.0.1';
-var port = 3000;
+var port = 8080;
 
 //gumtree Search function
 function gumtreeSearch(searchItem, filterType, callback) {
@@ -68,6 +68,7 @@ function gumtreeSearch(searchItem, filterType, callback) {
     			result;
     			if(result != undefined){
     				res.render('results', {result:result})
+					console.log(result);
     			}
     		});
     		
@@ -79,11 +80,9 @@ function gumtreeSearch(searchItem, filterType, callback) {
     	}
     })
 })
-<<<<<<< HEAD
 	app.listen(port, hostname, function(){
 		console.log("Server has started")
 	})
-=======
 
 app.get('/graph', function(req, res){
 	res.render('graph')
@@ -91,4 +90,3 @@ app.get('/graph', function(req, res){
 app.listen(port, hostname, function(){
 	console.log("Server has started")
 })
->>>>>>> b954bc2228e48c9d75f5bab867c994fae8130cc4
