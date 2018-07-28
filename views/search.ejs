@@ -4,12 +4,18 @@
 	<h1>Landing Page</h1>
 </div>
 
+<nav class="navbar navbar-light bg-light">
+	<form class="form-inline" action="/results" method="GET">
+		<input class="form-control mr-sm-2" type="text" placeholder="Search Again" name="search" aria-label="Search">
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</form>
+</nav>
 
-
-<!-- <div class="container">
+<!-- 
+<div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="input-group" id="adv-search" action="/results" method="GET" >
+			<div class="input-group" id="search" action="/results" method="GET" >
 				<input type="text" class="form-control form-control-lg" placeholder="Search for Item"/>
 				<div class="input-group-btn">
 					<div class="btn-group" role="group">
@@ -21,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-</div> -->
-
+</div>
+-->
 
 <% include ../partials/footer %>

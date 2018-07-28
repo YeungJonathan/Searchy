@@ -8,7 +8,7 @@ const cheerio = require('cheerio');
 var hostname = '127.0.0.1';
 var port = 8080;
 
-//gumtree Search function
+
 function gumtreeSearch(searchItem, filterType, callback) {
 	var filters = ['/k0?sort=price_desc','/k0?sort=price_asc','/k0','/k0?sort=rank'];
 	const items = [];
@@ -63,34 +63,28 @@ function gumtreeSearch(searchItem, filterType, callback) {
 
     request(url, function(error, response, body){
     	if(response.statusCode == 200 && !error){
+    			// var data = JSON.parse(body)
+    			gumtreeSearch(searchitem, 1, function(result) {
+    				if(result != undefined ) {
+    					console.log(result);
+    					res.render('results', {result:result});
+    				}
+    			});
+    			
+    		}
 
-    		gumtreeSearch(searchitem, 1, function(result) {
-    			result;
-    			if(result != undefined){
-    				res.render('results', {result:result})
-					console.log(result);
-    			}
-    		});
-    		
-    	}
+    		else{
+    			console.log("error occured, code:" + error)
+    			console.log("statusCode" + response.statusCode)
+    		}
+    	})
 
-    	else{
-    		console.log("error occured, code:" + error)
-    		console.log("statusCode" + response.statusCode)
-    	}
-    })
 })
+
+
+	app.get('/graph', function(req, res){
+		res.render('graph')
+	})
 	app.listen(port, hostname, function(){
 		console.log("Server has started")
 	})
-
-	app.listen(port, hostname, function(){
-		console.log("Server has started")
-	})
-
-app.get('/graph', function(req, res){
-	res.render('graph')
-})
-app.listen(port, hostname, function(){
-	console.log("Server has started")
-})
