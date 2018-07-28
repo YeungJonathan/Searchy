@@ -38,6 +38,10 @@ app.get('/results', function(req,res){
     		}
     	})
 })
+
+app.get('/graph', function(req, res){
+	res.render('graph')
+})
 app.listen(port, hostname, function(){
 	console.log("Server has started")
 })
