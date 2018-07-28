@@ -43,6 +43,21 @@
 		url += "&callback=_cb_findItemsByKeywords";
 		url += "&REST-PAYLOAD";
 		url += "&keywords=" +key;
+		
+		request(url,function(error,response,body){
+			$ch = curl_init(); 
+			curl_setopt($ch, CURLOPT_URL, $url); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			$output = curl_exec($ch); 
+			curl_close($ch);     
+
+			$json = json_decode($output, true);
+
+			$status = $json['findItemsByKeywordsResponse'][3][1]['title'];
+			console.log($status);
+			echo $status;
+		})
+		
 
 		s=document.createElement('script'); // create script element
 		s.src= url;
