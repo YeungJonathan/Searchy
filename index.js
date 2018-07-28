@@ -11,17 +11,14 @@ function gumtreeScrape(search){
 	};
 	rp(options)
 	  .then(function ($) {
-		var items = [];
 		let first = $('.user-ad-collection--row .user-ad-collection__list-wrapper');
 		let child = first.children();
 		child.each(function(i, elem) {
 			let namePrice = $(this).attr('aria-label');
 			let url = $(this).attr('href');
-			items.push([namePrice, url]);
 			all.push([namePrice, url]);
 		});
-		return all;
-//		console.log(items);
+		return all;//		console.log(all);
 	  });
 //	console.log(items);
 //	  .catch(function (err) {
