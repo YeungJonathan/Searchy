@@ -1,0 +1,12 @@
+<% include ../partials/header %>
+<h1>Results</h1>
+<div id="results">
+	<% data["results"].forEach(function(movie){ %> 
+	<ul>
+		<!-- Title and Year of release -->
+		<strong><%= movie["title"] %></strong> - 
+		<%= movie["release_date"] %> 
+	</ul>
+</div>
+
+<% include ../partials/footer %>
