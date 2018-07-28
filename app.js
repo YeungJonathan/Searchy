@@ -6,7 +6,7 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 
 var hostname = '127.0.0.1';
-var port = 3000;
+var port = 8080;
 
 
 function gumtreeSearch(searchItem, filterType, callback) {
@@ -39,6 +39,7 @@ function gumtreeSearch(searchItem, filterType, callback) {
 			console.log(err);
 		});
 	}
+
 
 	app.set('view engine', 'ejs')
 
@@ -77,7 +78,9 @@ function gumtreeSearch(searchItem, filterType, callback) {
     			console.log("statusCode" + response.statusCode)
     		}
     	})
+
 })
+
 
 	app.get('/graph', function(req, res){
 		res.render('graph')
