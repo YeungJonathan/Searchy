@@ -2,9 +2,10 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 let memes = [];
 function gumtreeSearch(searchItem, filterType, callback) {
+	var filters = ['/k0?sort=price_desc','/k0?sort=price_asc','/k0','/k0?sort=rank'];
 	const items = [];
 	const options = {
-		uri: ('https://www.gumtree.com.au/s-' + searchItem + filterType),
+		uri: ('https://www.gumtree.com.au/s-' + searchItem + filters[filterType]),
 		transform: function (body) {
 		return cheerio.load(body);
 		}
@@ -31,7 +32,7 @@ function gumtreeSearch(searchItem, filterType, callback) {
 		});
 }
 
-gumtreeSearch('ps4', '/k0', function(result) {
+gumtreeSearch('ps4', 1, function(result) {
 	memes = result;
 	console.log(memes);
 });
