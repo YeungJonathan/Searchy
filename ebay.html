@@ -32,7 +32,7 @@
 	</div>
 
 	<script>
-	function ebayScrape(key){
+//	function ebayScrape(key){
 		var searchitem = key
 		var url = "http://svcs.ebay.com/services/search/FindingService/v1";
 		url += "?OPERATION-NAME=findItemsByKeywords";
@@ -44,25 +44,25 @@
 		url += "&REST-PAYLOAD";
 		url += "&keywords=" +key;
 		
-		request(url,function(error,response,body){
-			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, $url); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-			$output = curl_exec($ch); 
-			curl_close($ch);     
-
-			$json = json_decode($output, true);
-
-			$status = $json['findItemsByKeywordsResponse'][3][1]['title'];
-			console.log($status);
-			echo $status;
-		})
+//		request(url,function(error,response,body){
+//			$ch = curl_init(); 
+//			curl_setopt($ch, CURLOPT_URL, $url); 
+//			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+//			$output = curl_exec($ch); 
+//			curl_close($ch);     
+//
+//			$json = json_decode($output, true);
+//
+//			$status = $json['findItemsByKeywordsResponse'][3][1]['title'];
+//			console.log($status);
+//			echo $status;
+//		})
 		
 
 		s=document.createElement('script'); // create script element
 		s.src= url;
 		document.body.appendChild(s)
-	}
+//	}
 	</script>
 
 </body>

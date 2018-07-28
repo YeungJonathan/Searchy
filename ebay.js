@@ -4,7 +4,7 @@ var request = require('request');
 var http = require('http');
 
 var hostname = '127.0.0.1';
-var port = 3000;
+var port = 8080;
 
 app.get("/", function(req, res){
 	var url = "http://svcs.ebay.com/services/search/FindingService/v1";
@@ -17,12 +17,17 @@ app.get("/", function(req, res){
 	url += "&REST-PAYLOAD";
 	url += "&keywords=PS4";
 
-
 	request(url, function(error, response, body){
 		if(response.statusCode == 200 && !error){
 			
 			var data = body;
-			console.log(data);
+//			console.log(data);
+			console.log(data[0]);
+			console.log(data[1]);
+			console.log(data[2]);
+
+//			console.log(data['findItemsByKeywordsResponse']);
+			 
 		}	
 
 		else{
@@ -30,9 +35,8 @@ app.get("/", function(req, res){
 			console.log("statusCode" + response.statusCode)
 		}
 	})
-	console.log(url);
+//	console.log(url);
 })
-
 
 
 app.listen(port, hostname, function(){
