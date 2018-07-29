@@ -78,7 +78,6 @@ function gumtreeSearch(searchItem, filterType, callback) {
 							items.push(tmp);
 						}
     					res.render('results', {items:items});
-
     				}
     			});
     			
