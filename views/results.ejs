@@ -1,14 +1,14 @@
 <% include ../partials/header %>
 
-<p><%=items%></p>
-<!-- <nav class="navbar navbar-dark fixed-top bg-dark" style="text-align: center;">
+<!-- <p><%=items%></p>
+<nav class="navbar navbar-dark fixed-top bg-dark" style="text-align: center;">
 <p>
 	<% for(var i = 0; i<items.length; i++){%>
 	<%= items%>
 	<% }%>
-</p>
+</p> -->
 
-<!-- <div class="container">
+<div class="container">
 	<nav class="navbar navbar-light bg-light">
 		<header>
 			<h1>Results Page</h1>
@@ -27,7 +27,7 @@
 		<section>
 			<div class="row">
 				<div class="col-md-4 text-center " >
-					<button type="button" href="https://www.amazon.com.au/" class="btn btn-outline-info btn-lg">Amazon</button>
+					<button type="button" onclick="window.location='https://www.amazon.com.au/'" class="btn btn-outline-info btn-lg">Amazon</button>
 
 				</div>
 				<div class="col-md-4 text-center">
@@ -38,37 +38,40 @@
 					<button type="button" href="https://www.amazon.com.au/" class="btn btn-outline-info btn-lg">Gumtree</button>
 				</div>
 			</section>
+			<%for(var i=0;i<items.length;i++){%>
+
 			<section>
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card">
 							<div class="card-body" style="width: 18rem;">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h5 class="card-title"><%=items[i][0]%></h5>
+								<p class="card-text"><%= items[i][1]%>.</p>
+								<a href="<%= items[i][2]%>" class="btn btn-primary">Go to Amazon</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h5 class="card-title"><%=items[i][0]%></h5>
+								<p class="card-text"><%=items[i][1]%></p>
+								<a href="<%= items[i][2]%>" class="btn btn-primary">Go to Amazon</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h5 class="card-title"><%=items[i][0]%></h5>
+								<p class="card-text"><%=items[i][1]%>.</p>
+								<a href="<%= items[i][2]%>" class="btn btn-primary">Go to Amazon</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+			<%}%>
 			<section>
 				<div class="row">
 					<div class="col-md-4">
@@ -134,5 +137,5 @@
 		</div>
 	</div>
 
-</div> -->
+</div>
 <% include ../partials/footer %>
