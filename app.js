@@ -67,6 +67,22 @@ app.get('/results', function(req,res){
     	if(response.statusCode == 200 && !error){
     			// var data = JSON.parse(body)
     			gumtreeSearch(searchitem, 1, function(result) {
+<<<<<<< HEAD
+    				if(result != undefined ) {
+//    					console.log(result);
+						for (let i = 0; i<5 ; i++){
+							let tmp = []
+							a = result[i]
+							b = a[0].split('\n')
+							tmp.push(b[0]);
+							tmp.push(b[1].slice(6,b[1].length));
+							tmp.push('https://www.gumtree.com.au'+a[1]);
+							items.push(tmp);
+						}
+    					res.render('results', {items:items});
+    				}
+    			});
+=======
     					for (let i = 0; i<5 ; i++){
     						let tmp = []
     						a = result[i]
@@ -81,6 +97,7 @@ app.get('/results', function(req,res){
 
     				});
     			}
+>>>>>>> 952a02dde08dfed501cee8640cc19cff4c1163bd
     			
     		
 
