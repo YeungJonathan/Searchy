@@ -4,10 +4,21 @@ var request = require('request');
 var http = require('http');
 
 var hostname = '127.0.0.1';
-var port = 8080;
+var port = 3000;
 var items = [];
 
-app.get("/", function(req, res){
+//app.get("/", function(req, res){
+//	var url = "http://svcs.ebay.com/services/search/FindingService/v1";
+//	url += "?OPERATION-NAME=findItemsByKeywords";
+//	url += "&SERVICE-VERSION=1.0.0";
+//	url += "&SECURITY-APPNAME=ZainShro-unihack-PRD-3b1d2c993-833e8ddf";
+//	url += "&GLOBAL-ID=EBAY-AU";
+//	url += "&RESPONSE-DATA-FORMAT=JSON";
+//	url += "&callback=_cb_findItemsByKeywords";
+//	url += "&REST-PAYLOAD";
+//	url += "&keywords=PS4";
+function ebayScrape(key, callback){
+	
 	var url = "http://svcs.ebay.com/services/search/FindingService/v1";
 	url += "?OPERATION-NAME=findItemsByKeywords";
 	url += "&SERVICE-VERSION=1.0.0";
@@ -16,11 +27,11 @@ app.get("/", function(req, res){
 	url += "&RESPONSE-DATA-FORMAT=JSON";
 	url += "&callback=_cb_findItemsByKeywords";
 	url += "&REST-PAYLOAD";
-	url += "&keywords=PS4";
-
+	url += "&keywords="+key;
 	request(url, function(error, response, body){
 		if(response.statusCode == 200 && !error){
 			
+			var temp = [];
 			var data = body;
 //			console.log(data);
 			var a = data.split("itemId");
@@ -169,7 +180,9 @@ app.get("/", function(req, res){
 			
 			items.push([name, galleryURL,viewItemURL,price]);
 			}
-			console.log(items);
+//			console.log(items);
+			callback(items);
+			
 		}	
 		else{
 			console.log("error occured, code:" + error)
@@ -177,9 +190,17 @@ app.get("/", function(req, res){
 		}
 	})
 //	console.log(url);
-})
+}
+
+ebayScrape('ps4', function(result) {
+	items = result;	
+	console.log(items);
+});
 
 
-app.listen(port, hostname, function(){
-	console.log("Server has started")
-})
+
+
+//
+//app.listen(port, hostname, function(){
+//	console.log("Server has started")
+//})
