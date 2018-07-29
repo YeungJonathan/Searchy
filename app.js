@@ -4,6 +4,7 @@ var request = require('request');
 var http = require('http');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
+const ama = require('ama');
 
 let gumtreeData = [];
 
