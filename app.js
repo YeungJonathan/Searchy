@@ -4,15 +4,19 @@ var request = require('request');
 var http = require('http');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-var items = [];
+
+let gumtreeData = [];
+
 
 var hostname = '127.0.0.1';
 var port = 8080;
 
 
 function gumtreeSearch(searchItem, filterType, callback) {
+	//input: item to search for, sort the search by, return 
+	//output:name, url of item, price, description
 	var filters = ['/k0?sort=price_desc','/k0?sort=price_asc','/k0','/k0?sort=rank'];
-	const items = [];
+	
 	const options = {
 		uri: ('https://www.gumtree.com.au/s-' + searchItem + filters[filterType]),
 		transform: function (body) {
@@ -28,27 +32,23 @@ function gumtreeSearch(searchItem, filterType, callback) {
 		first.each(function(i, elem) {
 			let namePrice = $(this).attr('aria-label');
 			let url = $(this).attr('href');
-			if(namePrice != undefined && url != undefined) items.push([namePrice, url]);
+			if(namePrice != undefined && url != undefined) gumtreeData.push([namePrice, url]);
 		});
-		callback(items);
-		})/* 
-		.then(function(rp) {
-			console.log('third');
-			return items;
-		}) */
-		.catch(function (err) {
-			console.log(err);
-		});
-	}
-
-
-	app.set('view engine', 'ejs')
-
-	app.get('/', function(req, res){
-		res.render('search');
+		callback(gumtreeData);
 	})
-	app.get('/results', function(req,res){
-		var searchitem = req.query.search;
+	.catch(function (err) {
+		console.log(err);
+	});
+}
+
+
+app.set('view engine', 'ejs')
+
+app.get('/', function(req, res){
+	res.render('search');
+})
+app.get('/results', function(req,res){
+	var searchitem = req.query.search;
 
 	// console.log(searchitem)
 	var url = "http://svcs.ebay.com/services/search/FindingService/v1";
@@ -66,23 +66,22 @@ function gumtreeSearch(searchItem, filterType, callback) {
     	if(response.statusCode == 200 && !error){
     			// var data = JSON.parse(body)
     			gumtreeSearch(searchitem, 1, function(result) {
-    				if(result != undefined ) {
-//    					console.log(result);
-						for (let i = 0; i<5 ; i++){
-							let tmp = []
-							a = result[i]
-							b = a[0].split('\n')
-							tmp.push(b[0]);
-							tmp.push(b[1].slice(6,b[1].length));
-							tmp.push('https://www.gumtree.com.au'+a[1]);
-							items.push(tmp);
-						}
-    					res.render('results', {items:items});
+    					for (let i = 0; i<5 ; i++){
+    						let tmp = []
+    						a = result[i]
+    						b = a[0].split('\n')
+    						tmp.push(b[0]);
+    						tmp.push(b[1].slice(6,b[1].length));
+    						tmp.push('https://www.gumtree.com.au'+a[1]);
+    						gumtreeData.push(tmp);
+    					}
+       					console.log(gumtreeData);
+    					res.render('results', {gumtreeData:gumtreeData});
 
-    				}
-    			});
+    				});
+    			}
     			
-    		}
+    		
 
     		else{
     			console.log("error occured, code:" + error)
@@ -93,9 +92,9 @@ function gumtreeSearch(searchItem, filterType, callback) {
 })
 
 
-	app.get('/graph', function(req, res){
-		res.render('graph')
-	})
-	app.listen(port, hostname, function(){
-		console.log("Server has started")
-	})
+app.get('/graph', function(req, res){
+	res.render('graph')
+})
+app.listen(port, hostname, function(){
+	console.log("Server has started")
+})
