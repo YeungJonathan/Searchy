@@ -20,15 +20,15 @@
 			<section>
 				<div class="row">
 					<div class="col-md-4 text-center " >
+						<button type="button" onclick="window.location='https://www.gumtree.com.au/'" class="btn btn-outline-info btn-lg">Gumtree</button>
+
+					</div>
+					<div class="col-md-4 text-center">
+						<button type="button" onclick="window.location='https://www.ebay.com'" class="btn btn-outline-info btn-lg">Ebay</button>
+
+					</div>
+					<div class="col-md-4 text-center">
 						<button type="button" onclick="window.location='https://www.amazon.com.au/'" class="btn btn-outline-info btn-lg">Amazon</button>
-
-					</div>
-					<div class="col-md-4 text-center">
-						<button type="button" href="https://www.amazon.com.au/" class="btn btn-outline-info btn-lg">Ebay</button>
-
-					</div>
-					<div class="col-md-4 text-center">
-						<button type="button" href="https://www.amazon.com.au/" class="btn btn-outline-info btn-lg">Gumtree</button>
 					</div>
 				</section>
 				
@@ -80,14 +80,16 @@
 					</div>
 				</div>
 			</section> -->
-			<!-- <section>
+			
+			<section>
+				<%for(var i=0;i<5;i++){%>
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<h5 class="card-title" id="name"><%=amazonItems[i][0]%></h5>
+								<p class="card-text" id="price"><%=amazonItem[i][2] + '.' + amazonItems[i][3]%></p>
+								<a href="#" class="btn btn-primary" id="url">Go somewhere</a>
 							</div>
 						</div>
 					</div>
@@ -110,7 +112,9 @@
 						</div>
 					</div>
 				</div>
-			</section> -->
+				<%}%>
+			</section>
+
 		</div>
 	</div>
 

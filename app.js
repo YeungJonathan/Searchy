@@ -4,9 +4,15 @@ var request = require('request');
 var http = require('http');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const ama = require('ama');
+const ama = require('./ama');
 
 let gumtreeData = [];
+let amazonItems = [];
+amazonItems = amazonSearch(1);
+let array = {
+	gumtree: gumtreeData,
+	amazon: amazonItems
+}
 
 
 var hostname = '127.0.0.1';
@@ -67,22 +73,9 @@ app.get('/results', function(req,res){
     	if(response.statusCode == 200 && !error){
     			// var data = JSON.parse(body)
     			gumtreeSearch(searchitem, 1, function(result) {
-<<<<<<< HEAD
+
     				if(result != undefined ) {
-//    					console.log(result);
-						for (let i = 0; i<5 ; i++){
-							let tmp = []
-							a = result[i]
-							b = a[0].split('\n')
-							tmp.push(b[0]);
-							tmp.push(b[1].slice(6,b[1].length));
-							tmp.push('https://www.gumtree.com.au'+a[1]);
-							items.push(tmp);
-						}
-    					res.render('results', {items:items});
-    				}
-    			});
-=======
+
     					for (let i = 0; i<5 ; i++){
     						let tmp = []
     						a = result[i]
@@ -92,27 +85,26 @@ app.get('/results', function(req,res){
     						tmp.push('https://www.gumtree.com.au'+a[1]);
     						gumtreeData.push(tmp);
     					}
-       					console.log(gumtreeData);
-    					res.render('results', {gumtreeData:gumtreeData});
 
-    				});
-    			}
->>>>>>> 952a02dde08dfed501cee8640cc19cff4c1163bd
-    			
-    		
+    					// console.log(gumtreeData);
+    					console.log(array)
+    					res.render('results', {array:array});
+    				}
+    				else{
+    					console.log("error occured, code:" + error)
+    					console.log("statusCode" + response.statusCode)
+    				}
 
-    		else{
-    			console.log("error occured, code:" + error)
-    			console.log("statusCode" + response.statusCode)
+    			});
     		}
-    	})
+    	});
+});
 
-})
 
 
-app.get('/graph', function(req, res){
-	res.render('graph')
-})
-app.listen(port, hostname, function(){
-	console.log("Server has started")
-})
+    		app.get('/graph', function(req, res){
+    			res.render('graph')
+    		})
+    		app.listen(port, hostname, function(){
+    			console.log("Server has started")
+    		})
