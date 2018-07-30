@@ -3,7 +3,7 @@
 
 We made this project in 24 hours in Unihack 2018.
 
-The concept is to create a website that compares different online shopping platforms (Amazon, Ebay and Gumtree for now) when user searches for a particular item in the search bar of our website. There will be 3 columns showing top results from each website. Images, name, description and the link will be shown to users for each items. 
+The concept is to create a website that compares different online shopping platforms (Amazon, Ebay and Gumtree for now) when user searches for a particular item in the search bar of our website. There will be 3 columns showing top results from each website. Images, names, descriptions, prices and the link will be shown to users for each items. 
 
 There is also a chart showing the average prices for each website for that particular products for good measures for the users. There are different filters for 
 the user to choose from.
