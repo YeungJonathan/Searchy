@@ -1,6 +1,6 @@
 # Searchy
 🛍️🎁📺🛏️📦💰📗💎
-# UniHack-2018
+
 We made this project in 24 hours in Unihack 2018.
 Team 20 - HAL (Hopeless, Aimless, Lifeless)
 The concept is to create a website that compares different online shopping platforms (Amazon, Ebay and Gumtree for now) when user searches for a particular item in the search bar of our website. There will be 3 columns showing top results from each website. Images, names, descriptions, prices and the link will be shown to users for each items. 
